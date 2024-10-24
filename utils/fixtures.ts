@@ -42,8 +42,8 @@ export const test = base.extend<Fixtures>({
   docsPage: async ({ page }, use) => {
     await use(new DocsPage(page));
   },
-  loginPage: async ({ page }, use) => {
-    await use(new LoginPage(page));
+  loginPage: async ({ page, commonPage }, use) => {
+    await use(new LoginPage(page, commonPage));
   },
   mainPage: async ({ page }, use) => {
     await use(new MainPage(page));

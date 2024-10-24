@@ -1,10 +1,12 @@
 import { type Page, type Locator, expect } from '@playwright/test';
 import { getMainUser } from '../utils/config';
 import { Components } from './components';
+import CommonPage from './page.common';
 
 /** Locators and functions for the `scripture.api.bible/login` page. */
 export default class LoginPage {
   readonly page: Page;
+  readonly commonPage: CommonPage;
 
   readonly form: {
     readonly loginField: Components.InputField;
@@ -12,8 +14,9 @@ export default class LoginPage {
     readonly signInBtn: Locator;
   };
 
-  constructor(page: Page) {
+  constructor(page: Page, commonPage: CommonPage) {
     this.page = page;
+    this.commonPage = commonPage;
 
     this.form = {
       loginField: {
@@ -37,6 +40,6 @@ export default class LoginPage {
 
     await this.page.waitForLoadState('load');
 
-    await expect(this.page.getByRole('link', { name: 'Logout' })).toBeVisible(); // Check that we are authorized
+    await this.commonPage.checkLogoutLink({ authorized: true });
   }
 }
