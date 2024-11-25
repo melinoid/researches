@@ -34,7 +34,7 @@ export default defineConfig({
     // API tests
     {
       name: 'api',
-      timeout: 3000,
+      timeout: 2000,
       testMatch: '**/api/**/@(suite|test).*.?(c|m)[jt]s?(x)',
       use: {
         baseURL: 'https://api.scripture.api.bible',

@@ -56,7 +56,7 @@ test.describe('/v1/bibles/bibleId/books', async () => {
   });
 
   test('200 code (all params)', async ({ request, helper }) => {
-    test.slow();
+    test.setTimeout(10000);
     await test.step('Send request', async () => {
       response = await request.get(apiPath + bible.id + '/books', {
         params: {
