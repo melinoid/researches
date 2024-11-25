@@ -1,9 +1,13 @@
 import { test as setup } from '../../utils/fixtures';
 
 setup('Login', async ({ page, loginPage }) => {
-  await page.goto('/login');
-
-  await loginPage.fillOutForm();
-
-  await page.context().storageState({ path: '.temp/session.json' }); // Save storage state for other tests (24m lifetime)
+  await setup.step('Open login page', async () => {
+    await page.goto('/login');
+  });
+  await setup.step('Get authorized', async () => {
+    await loginPage.fillOutForm();
+  });
+  await setup.step('Save session', async () => {
+    await page.context().storageState({ path: '.temp/session.json' }); // Session lifetime: 24M
+  });
 });
